@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--&lt;!&ndash;    方式一：使用构造方法来实例化bean&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    1.导入spring的坐标spring-contxt&ndash;&gt;-->
+<!--    &lt;!&ndash;    2.配置bean&ndash;&gt;-->
+<!--    &lt;!&ndash;    beam：配置beam&ndash;&gt;-->
+<!--    &lt;!&ndash;    id：起名字&ndash;&gt;-->
+<!--    &lt;!&ndash;    class：给beam类型&ndash;&gt;-->
+<!--    &lt;!&ndash;    scope="singleton" 默认值：单例模式，另外一个就是多例模式 &ndash;&gt;-->
+<!--    &lt;!&ndash;    用单例就是为了节省资源&ndash;&gt;-->
+<!--    <bean id="bookDao" name="dao" class="com.example.app.dao.impl.BookDaoImpl" scope="prototype"/>-->
+
+<!--    <bean id="bookService" name="service,service,bookEbi" class="com.example.app.service.impl.BookServiceImpl">-->
+
+<!--        &lt;!&ndash;        7.配置server与dao的关系 &ndash;&gt;-->
+<!--        &lt;!&ndash;        property：配置当前bean的属性&ndash;&gt;-->
+<!--        &lt;!&ndash;        name：配置哪一个具体的属性&ndash;&gt;-->
+<!--        &lt;!&ndash;        ref：参考哪一个bean&ndash;&gt;-->
+
+<!--        &lt;!&ndash;        这里的name=bookBao其实说的就是BookServiceImpl的private BookDao bookDao&ndash;&gt;-->
+<!--        &lt;!&ndash;        ref=bookDao指的是<bean id="bookDao"....&ndash;&gt;-->
+<!--        <property name="bookDao" ref="bookDao"/>-->
+<!--    </bean>-->
+
+<!--&lt;!&ndash;    方式二：使用静态工厂实例化bean&ndash;&gt;-->
+<!--    &lt;!&ndash;    造一个OrderDaoFactory对象，实现他的getOrderDao方法&ndash;&gt;-->
+<!--    <bean id="orderDao" class="com.example.app.factory.OrderDaoFactory" factory-method="getOrderDao"/>-->
+
+<!--&lt;!&ndash;    方法三：使用实例工厂实例化bean&ndash;&gt;-->
+<!--    &lt;!&ndash;    先实现工厂的bean&ndash;&gt;-->
+<!--    <bean id="userFactory" class="com.example.app.factory.UserDaoFactory"/>-->
+<!--    &lt;!&ndash;    再实现需要实例的bean&ndash;&gt;-->
+<!--    <bean id="userDao" factory-method="getUserDao" factory-bean="userFactory"/>-->
+
+<!--    方法四：再方式三的优化，使用FactoryBean实例化-->
+<!--    主流使用这种方式来实现bean-->
+    <bean id="userDao" class="com.example.app.factory.UserDaoFactoryBean"/>
+</beans>
